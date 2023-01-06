@@ -1,5 +1,6 @@
+import React from "react";
 import logo from "./logo.svg";
-import "./App.css";
+import "./App.scss";
 
 function App() {
   return (
@@ -8,7 +9,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>Hello world with ReactJS</p>
         <a
-          className="App-link"
+          className="App-link"y
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"
