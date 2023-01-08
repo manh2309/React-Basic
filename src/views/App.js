@@ -4,7 +4,7 @@ import MyComponent from "./Example/MyComponents";
 import "./App.scss";
 
 /**
- * 2 components: class components / function components (function, arrow function)
+ * 2 components: class components / function components (function, arrow function): dung vs hook
  * return ra 1 khối html
  * JSX trả về 1 khối html nằm trong return
  */
