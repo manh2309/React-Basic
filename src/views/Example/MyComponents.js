@@ -41,6 +41,20 @@ Nesting Components
       arrJob: currentJob,
     });
   };
+  //So sánh data hiện tại, quá khứ
+  componentDidUpdate(prevProps, prevState) {
+    console.log(
+      ">> run did update: ",
+      "prev Sate:",
+      prevState,
+      "current State: ",
+      this.state
+    );
+  }
+  //Thích hợp để gọi API sau này
+  componentDidMount() {
+    console.log(">> run component did mount");
+  }
   render() {
     // let name = "Manh";
     // {

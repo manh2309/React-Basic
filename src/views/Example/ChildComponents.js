@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./Demo.scss";
 class ChildComponent extends React.Component {
   state = {
     showJob: false,
@@ -36,7 +36,12 @@ Conditional output
       <>
         {showJob === false ? (
           <div>
-            <button onClick={() => this.handleShowHide()}>Show</button>
+            <button
+              className="btn btn-Show"
+              onClick={() => this.handleShowHide()}
+            >
+              Show
+            </button>
           </div>
         ) : (
           <>
