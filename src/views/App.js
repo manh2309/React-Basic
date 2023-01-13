@@ -18,9 +18,9 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>TodosApp with ReactJS</p>
-        {/* <MyComponent /> */}
+        <MyComponent />
         {/* <MyComponent></MyComponent> muốn gọi con trong component */}
-        <ListTodo />
+        {/* <ListTodo /> */}
         <ToastContainer
           position="top-right"
           autoClose={5000}

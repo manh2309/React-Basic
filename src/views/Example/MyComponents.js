@@ -9,6 +9,7 @@ class MyComponent extends React.Component {
       { id: "abc2", title: "Developers1", salary: "400" },
       { id: "abc3", title: "Tester", salary: "700" },
     ],
+    // editJob: {},
   };
   /*
 JSX  return block trả về 1 phần tử của html
@@ -33,6 +34,18 @@ Nesting Components
       arrJob: [...this.state.arrJob, job],
     });
     console.log(">>> Check job", job);
+  };
+  EditAgeJob = (job) => {
+    // let { arrJob, editJob } = this.state;
+    // let listJobCopy = job;
+    // arrJob = {};
+    // let ObjIndex = listJobCopy.findIndex((item) => item.id === job.id);
+    // listJobCopy[ObjIndex].title = job.title;
+    // listJobCopy[ObjIndex].salary = job.salary;
+    this.setState({
+      arrJob: [...job],
+      // editJob: {},
+    });
   };
   DeleteAgeJob = (job) => {
     let currentJob = this.state.arrJob;
@@ -79,7 +92,9 @@ Nesting Components
         <AddComponent AddNewJob={this.AddNewJob} />
         <ChildComponent
           arrJob={this.state.arrJob}
+          // editJob={this.state.editJob}
           DeleteAgeJob={this.DeleteAgeJob}
+          EditAgeJob={this.EditAgeJob}
         />
       </>
     );

@@ -1,8 +1,10 @@
 import React from "react";
 import "./Demo.scss";
+import { toast } from "react-toastify";
 class ChildComponent extends React.Component {
   state = {
     showJob: false,
+    editJob1: {},
   };
   /*
 JSX  return block trả về 1 phần tử của html
@@ -25,11 +27,61 @@ Conditional output
     console.log(">>Check id: ", job);
     this.props.DeleteAgeJob(job);
   };
+  handleEdit = (job) => {
+    let { arrJob } = this.props;
+    let { editJob1 } = this.state;
+    let isEmptyJob = Object.keys(editJob1).length === 0;
+    if (isEmptyJob === false && editJob1.id === job.id) {
+      console.log(isEmptyJob);
+      let listJobCopy = [...arrJob];
+      let ObjIndex = listJobCopy.findIndex((item) => item.id === job.id);
+      listJobCopy[ObjIndex].title = editJob1.title;
+      listJobCopy[ObjIndex].salary = editJob1.salary;
+      this.props.EditAgeJob({
+        // arrJob: listJobCopy,
+        arrJob: listJobCopy,
+      });
+      this.setState({
+        // arrJob: listJobCopy,
+        editJob1: {},
+      });
+
+      toast.success("Update Succsess!");
+      console.log(job);
+      return;
+    }
+
+    console.log(job);
+    this.setState({
+      editJob1: job,
+    });
+  };
+  edittileTodo = (event) => {
+    let editJobCopy = { ...this.state.editJob1 };
+    editJobCopy.title = event.target.value;
+
+    this.setState({
+      editJob1: editJobCopy,
+    });
+  };
+  editsalTodo = (event) => {
+    let editJobCopy = { ...this.state.editJob1 };
+    editJobCopy.salary = event.target.value;
+    this.setState({
+      editJob1: editJobCopy,
+    });
+  };
   render() {
     console.log(">>> Check props: ", this.props);
     // let name = this.props.name;
     let { arrJob } = this.props;
-    let { showJob } = this.state;
+
+    let { showJob, editJob1 } = this.state;
+    // let isEmptyJob = Object.keys(editJob1).length === 0;
+    let isEmptyJob = Object.keys(editJob1).length === 0;
+
+    console.log(isEmptyJob);
+    console.log(">>>Check showjob", showJob);
     let check = showJob === true ? "showJob = true" : "showJob = false";
     let a = "";
     return (
@@ -46,11 +98,46 @@ Conditional output
         ) : (
           <>
             <div className="job-list">
-              {
-                (a = arrJob.map((item, index) => {
+              {arrJob &&
+                arrJob.length > 0 &&
+                arrJob.map((item, index) => {
                   return (
                     <div key={item.id}>
-                      {item.title} - {item.salary} ${" "}
+                      {isEmptyJob === true ? (
+                        <span>
+                          {index + 1} - {item.title} - {item.salary} ${" "}
+                        </span>
+                      ) : (
+                        <>
+                          {editJob1.id === item.id ? (
+                            <span>
+                              {index + 1} -
+                              <input
+                                value={editJob1.title}
+                                onChange={(event) => this.edittileTodo(event)}
+                              />
+                              -
+                              <input
+                                value={editJob1.salary}
+                                onChange={(event) => this.editsalTodo(event)}
+                              />
+                            </span>
+                          ) : (
+                            <span>
+                              {index + 1} - {item.title} - {item.salary} ${" "}
+                            </span>
+                          )}
+                        </>
+                      )}
+
+                      <button
+                        className="edit"
+                        onClick={() => this.handleEdit(item)}
+                      >
+                        {isEmptyJob === false && editJob1.id === item.id
+                          ? "Save"
+                          : "Edit"}
+                      </button>
                       <button
                         onClick={() => {
                           this.handleDelete(item);
@@ -60,8 +147,7 @@ Conditional output
                       </button>
                     </div>
                   );
-                }))
-              }
+                })}
             </div>
             <div>
               <button onClick={() => this.handleShowHide()}>Hide</button>
