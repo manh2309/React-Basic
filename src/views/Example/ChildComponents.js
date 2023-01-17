@@ -37,10 +37,9 @@ Conditional output
       let ObjIndex = listJobCopy.findIndex((item) => item.id === job.id);
       listJobCopy[ObjIndex].title = editJob1.title;
       listJobCopy[ObjIndex].salary = editJob1.salary;
-      this.props.EditAgeJob({
-        // arrJob: listJobCopy,
-        arrJob: listJobCopy,
-      });
+      this.props.EditAgeJob(
+        listJobCopy
+      );
       this.setState({
         // arrJob: listJobCopy,
         editJob1: {},

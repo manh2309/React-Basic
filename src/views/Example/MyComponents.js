@@ -1,7 +1,7 @@
 import React from "react";
 import AddComponent from "./AddComponents";
 import ChildComponent from "./ChildComponents";
-
+import { toast } from "react-toastify";
 class MyComponent extends React.Component {
   state = {
     arrJob: [
@@ -33,19 +33,15 @@ Nesting Components
     this.setState({
       arrJob: [...this.state.arrJob, job],
     });
+    toast.success("Wow so easy!");
     console.log(">>> Check job", job);
   };
-  EditAgeJob = (job) => {
-    // let { arrJob, editJob } = this.state;
-    // let listJobCopy = job;
-    // arrJob = {};
-    // let ObjIndex = listJobCopy.findIndex((item) => item.id === job.id);
-    // listJobCopy[ObjIndex].title = job.title;
-    // listJobCopy[ObjIndex].salary = job.salary;
+  EditAgeJob = (arrJob) => {
+    let listJobCopy = arrJob;
     this.setState({
-      arrJob: [...job],
-      // editJob: {},
+      arrJob: listJobCopy,
     });
+    toast.success("Wow so easy!");
   };
   DeleteAgeJob = (job) => {
     let currentJob = this.state.arrJob;
@@ -53,6 +49,7 @@ Nesting Components
     this.setState({
       arrJob: currentJob,
     });
+    toast.success("Delete Succsess!");
   };
   //So sánh data hiện tại, quá khứ
   componentDidUpdate(prevProps, prevState) {
