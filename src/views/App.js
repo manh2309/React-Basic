@@ -8,6 +8,8 @@ import { ToastContainer, toast } from "react-toastify";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.scss";
+import ListUser from "./Users/ListUsers";
+import DetailUser from "./Users/DetailUsers";
 
 /**
  * 2 components: class components / function components (function, arrow function): dung vs hook
@@ -22,7 +24,7 @@ function App() {
         <header className="App-header">
           <Nav />
           <img src={logo} className="App-logo" alt="logo" />
-          <Home />
+          {/* <Home /> */}
           {/* <MyComponent /> */}
           {/* <MyComponent></MyComponent> muốn gọi con trong component */}
 
@@ -49,6 +51,12 @@ function App() {
             </Route>
             <Route path="/about">
               <MyComponent />
+            </Route>
+            <Route path="/users" exact>
+              <ListUser />
+            </Route>
+            <Route path="/users/:id">
+              <DetailUser />
             </Route>
           </Switch>
         </header>
