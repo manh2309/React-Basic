@@ -1,12 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./views/App";
+import { Provider } from "react-redux"; // ép react khởi động song song vs redux
+import { createStore } from "redux";
+import rootReducer from "./store/reducers/rootReducer";
 import reportWebVitals from "./reportWebVitals";
 import "./styles/global.scss";
 
+const reduxStore = createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+); // tạo biến nạp dữ liệu
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={reduxStore}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );

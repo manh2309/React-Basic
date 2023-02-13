@@ -2,6 +2,7 @@ import React from "react";
 import AddComponent from "./AddComponents";
 import ChildComponent from "./ChildComponents";
 import { toast } from "react-toastify";
+import Color from "../HOC/Color";
 class MyComponent extends React.Component {
   state = {
     arrJob: [
@@ -97,4 +98,4 @@ Nesting Components
     );
   }
 }
-export default MyComponent;
+export default Color(MyComponent);

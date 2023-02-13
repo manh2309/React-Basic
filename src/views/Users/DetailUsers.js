@@ -9,6 +9,9 @@ class DetailUser extends React.Component {
     if (this.props.match && this.props.match.params) {
       let id = this.props.match.params.id;
       let res = await axios.get(`https://reqres.in/api/users/${id}`);
+      // axios.get(`https://reqres.in/api/users/${id}`).then((res1) => {
+      //   console.log(res1.data.data);
+      // });
       console.log(res);
       this.setState({
         user: res && res.data && res.data.data ? res.data.data : {},
